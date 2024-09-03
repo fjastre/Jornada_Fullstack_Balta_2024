@@ -20,6 +20,7 @@ public class CreateCategoryEndpoint : IEndpoint
         ICategoryHandler handler,
         CreateCategoryRequest request)
     {
+        request.UserId = ApiConfiguration.UserId;
         var response = await handler.CreateAsync(request);
         return response.IsSuccess
             ? TypedResults.Created($"v1/categories/{response.Data?.Id}", response)
